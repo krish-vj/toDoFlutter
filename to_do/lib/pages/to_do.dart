@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:to_do/data/database.dart';
 import 'package:to_do/pages/drawer.dart';
 import 'package:to_do/util/dialog.dart';
 import 'package:to_do/util/to_doList.dart';
+
 
 class ToDoPage extends StatefulWidget {
   const ToDoPage({super.key});
@@ -11,23 +14,36 @@ class ToDoPage extends StatefulWidget {
 }
 
 class _ToDoPageState extends State<ToDoPage> {
+  final _myBox= Hive.box('mybox');
+  @override
+  void initState() {
+    // TODO: implement initState
+    if (_myBox.get("TODOS")==null){db.createInitData();}
+    else{
+      db.loadData();
+    }
+    super.initState();
+  }
+  
   final cont= TextEditingController();
   
-  List toDoList=[
-     ];
+  ToDoDb db=ToDoDb();
+  // List db.toDoList= db.db.toDoList;
   void flip(bool value, int index){
     setState(() {
-      toDoList[index][1]= !toDoList[index][1];
+      db.toDoList[index][1]= !db.toDoList[index][1];
     });
+    db.updateData();
 
   }
   
   void saveEvent(){
     //  print(cont.text);
     setState(() {
-      toDoList.add([cont.text, false]);
+      db.toDoList.add([cont.text, false]);
       cont.clear();
     });
+    db.updateData();
     closeEvent();
   }
   void closeEvent(){
@@ -37,12 +53,14 @@ class _ToDoPageState extends State<ToDoPage> {
     showDialog(context: context, builder: (context){
       return DialogBox(saveEvent: saveEvent, closeEvent: closeEvent, contr:cont ,);
     });
+    db.updateData();
 
   }
   void removeItem(int index){
     setState(() {
-      toDoList.removeAt(index);
+      db.toDoList.removeAt(index);
     });
+    db.updateData();
   }
   @override
   Widget build(BuildContext context) {
@@ -52,11 +70,11 @@ class _ToDoPageState extends State<ToDoPage> {
         title: Text("To Do's"),
       ),
       body: ListView.builder(
-        itemCount: toDoList.length,
+        itemCount: db.toDoList.length,
         itemBuilder: (context, index){
-          return ToDoList(taskName: toDoList[index][0],
+          return ToDoList(taskName: db.toDoList[index][0],
           removeThis: (context)=>removeItem(index),
-           completed: toDoList[index][1], 
+           completed: db.toDoList[index][1], 
            onChanged: (value)=>flip(value, index),);},
       ),
       floatingActionButton: Padding(
