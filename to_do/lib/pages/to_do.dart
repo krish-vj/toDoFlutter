@@ -67,7 +67,11 @@ class _ToDoPageState extends State<ToDoPage> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        title: Text("To Do's"),
+        title: const Text("To Do's"),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
       ),
       body: ListView.builder(
         itemCount: db.toDoList.length,
@@ -79,7 +83,13 @@ class _ToDoPageState extends State<ToDoPage> {
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 0, right: 25, bottom: 50, top:0),
-        child: FloatingActionButton(onPressed: addItem, child: Icon(Icons.add),),
+        child: FloatingActionButton(elevation: 0.0,
+        shape: CircleBorder(
+    side: BorderSide(
+      color: Colors.black, // Color of the border
+      width: 2.0, // Width of the border
+    ), ),
+    onPressed: addItem, child: Icon(Icons.add, color: Colors.black,), backgroundColor: Colors.white,),
       ),
     );
   }

@@ -9,8 +9,16 @@ class Settings extends StatelessWidget {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        title: Text("Settings"),
+        title: const Text("Settings"),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
       ),
+      body: Center(child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text("Dark Mode, Lefty Mode and signin options coming soon", style: TextStyle(fontSize: 30),),
+      )),
     );
   }
 }
