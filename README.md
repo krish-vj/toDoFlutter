@@ -15,12 +15,17 @@ A clean and minimalistic to-do application built with Flutter. This app is desig
   * **User Authentication**: Sign-in options to sync tasks across devices.
 
 ### 📸 Screenshots
-![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/1.png?raw=true)
-![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/2.png?raw=true)
-![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/3.png?raw=true)
-![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/4.png?raw=true)
-![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/5.png?raw=true)
+<div align="center">
+  <img src="https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/1.png?raw=true" width="240" alt="toDoFlutter screenshot 1" style="margin-right: 30px;">
+  <img src="https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/2.png?raw=true" width="240" alt="toDoFlutter screenshot 2" style="margin: 0 30px;">
+  <img src="https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/3.png?raw=true" width="240" alt="toDoFlutter screenshot 3" style="margin-left: 30px;">
+</div>
 
+<div align="center">
+  <img src="https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/4.png?raw=true" width="240" alt="toDoFlutter screenshot 4" style="margin-right: 30px;">
+  <img src="https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/5.png?raw=true" width="240" alt="toDoFlutter screenshot 5" style="margin: 0 30px;">
+  <img src="https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/6.png?raw=true" width="240" alt="toDoFlutter screenshot 6" style="margin-left: 30px;">
+</div>
 
 -----
 
