@@ -15,9 +15,12 @@ A clean and minimalistic to-do application built with Flutter. This app is desig
   * **User Authentication**: Sign-in options to sync tasks across devices.
 
 ### 📸 Screenshots
+![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/1.png?raw=true)
+![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/2.png?raw=true)
+![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/3.png?raw=true)
+![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/4.png?raw=true)
+![Home](https://github.com/krish-vj/toDoFlutter/blob/main/screenshots/5.png?raw=true)
 
-  * To-Do List:
-  * Task Details:
 
 -----
 
