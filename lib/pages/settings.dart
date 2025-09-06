@@ -7,10 +7,10 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
-      appBar: AppBar(
+      appBar:AppBar(
         title: Text("Settings"),
       ),
+      drawer: MyDrawer(),
     );
   }
 }
