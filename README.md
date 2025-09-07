@@ -7,12 +7,9 @@ A clean and minimalistic to-do application built with Flutter. This app is desig
   * **Minimalist UI**: A straightforward, clean design focused on your tasks.
   * **Task Management**: Add, complete, and delete your daily to-dos.
   * **Offline Access**: All your tasks are stored locally on your device.
-
-### 🚀 Upcoming Features (Future Roadmap)
-
   * **Left-Handed Mode**: An interface optimized for left-handed users.
   * **Dark Mode**: A stylish dark theme for low-light environments.
-  * **User Authentication**: Sign-in options to sync tasks across devices.
+
 
 ### 📸 Screenshots
 <div align="center">
