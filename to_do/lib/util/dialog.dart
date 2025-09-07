@@ -7,88 +7,106 @@ class DialogBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return AlertDialog(
-    backgroundColor: Colors.white,
-    // Set the shape for rounded corners, matching the image
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12.0),
-    ),
-    // Remove the default padding to have more control over the layout
-    contentPadding: EdgeInsets.zero,
-    content: Column(
-      mainAxisSize: MainAxisSize.min, // Makes the column height fit its content
-      children: [
-        // Add some padding around the TextField
-        Padding(
-          padding: const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 20.0),
-          child: TextField(
-            autofocus: true,
-            controller: contr,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Add a new To Do',
+    return AlertDialog(
+      backgroundColor: Theme.of(context).cardColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.primary,
+          width: 1.0,
+        )
+      ),
+      contentPadding: EdgeInsets.zero,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 20.0),
+            child: TextField(
+              autofocus: true,
+              controller: contr,
+              style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                hintText: 'Add a new To Do',
+                hintStyle: TextStyle(
+                  color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6),
+                ),
+              ),
             ),
           ),
-        ),
-        // A thin divider line above the buttons
-        Divider(
-          height: 1,
-          color: Colors.black,
-        ),
-        // Use IntrinsicHeight to make the VerticalDivider take up the full height of the row
-        IntrinsicHeight(
-          child: Row(
-            children: [
-              // Use Expanded to make the button take up half the width
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    // Remove the splash effect's border radius to fit the dialog corner
-                    shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.only(bottomLeft: Radius.circular(12.0))),
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  ),
-                  onPressed: closeEvent,
-                  child: Text(
-                    "Cancel",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ),
-              // The vertical line between the buttons
-              VerticalDivider(
-                width: 1,
-                thickness: 1,
-                color: Colors.black,
-              ),
-              // Use Expanded for the second button as well
-              Expanded(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(12.0))),
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  ),
-                  onPressed: saveEvent,
-                  child: Text(
-                    "Save",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold, // Make 'Save' stand out
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          Divider(
+            height: 1,
+            color: Theme.of(context).dividerColor,
           ),
-        )
-      ],
-    ),
-  );
-  }}
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(12.0),
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    ),
+                    onPressed: closeEvent,
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                VerticalDivider(
+                  width: 1,
+                  thickness: 1,
+                  color: Theme.of(context).dividerColor,
+                ),
+                Expanded(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(12.0),
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    ),
+                    onPressed: saveEvent,
+                    child: Text(
+                      "Save",
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

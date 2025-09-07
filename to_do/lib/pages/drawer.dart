@@ -1,4 +1,3 @@
-// lib/my_drawer.dart
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -10,40 +9,62 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Colors.grey,
             ),
             child: Text(
               'My App Drawer',
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontSize: 24,
               ),
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text("To Do's"),
+            leading: Icon(
+              Icons.home,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            title: Text(
+              "To Do's",
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyLarge?.color,
+              ),
+            ),
             onTap: () {
-              Navigator.pop(context); 
+              Navigator.pop(context);
               Navigator.pushNamed(context, '/todos');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
+            leading: Icon(
+              Icons.settings,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            title: Text(
+              'Settings',
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyLarge?.color,
+              ),
+            ),
             onTap: () {
-              // Navigate to the settings page
               Navigator.pop(context);
               Navigator.pushNamed(context, '/settings');
             },
           ),
           ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Developer'),
+            leading: Icon(
+              Icons.person,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            title: Text(
+              'Developer',
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyLarge?.color,
+              ),
+            ),
             onTap: () {
-              // Navigate to the profile page
               Navigator.pop(context);
               Navigator.pushNamed(context, '/developer');
             },

@@ -5,7 +5,6 @@ import 'package:to_do/pages/drawer.dart';
 import 'package:to_do/util/dialog.dart';
 import 'package:to_do/util/to_doList.dart';
 
-
 class ToDoPage extends StatefulWidget {
   const ToDoPage({super.key});
 
@@ -14,31 +13,29 @@ class ToDoPage extends StatefulWidget {
 }
 
 class _ToDoPageState extends State<ToDoPage> {
-  final _myBox= Hive.box('mybox');
+  final _myBox = Hive.box('mybox');
+
   @override
   void initState() {
-    // TODO: implement initState
-    if (_myBox.get("TODOS")==null){db.createInitData();}
-    else{
+    if (_myBox.get("TODOS") == null) {
+      db.createInitData();
+    } else {
       db.loadData();
     }
     super.initState();
   }
-  
-  final cont= TextEditingController();
-  
-  ToDoDb db=ToDoDb();
-  // List db.toDoList= db.db.toDoList;
-  void flip(bool value, int index){
+
+  final cont = TextEditingController();
+  ToDoDb db = ToDoDb();
+
+  void flip(bool value, int index) {
     setState(() {
-      db.toDoList[index][1]= !db.toDoList[index][1];
+      db.toDoList[index][1] = !db.toDoList[index][1];
     });
     db.updateData();
-
   }
-  
-  void saveEvent(){
-    //  print(cont.text);
+
+  void saveEvent() {
     setState(() {
       db.toDoList.add([cont.text, false]);
       cont.clear();
@@ -46,50 +43,67 @@ class _ToDoPageState extends State<ToDoPage> {
     db.updateData();
     closeEvent();
   }
-  void closeEvent(){
+
+  void closeEvent() {
     Navigator.of(context).pop();
   }
-  void addItem(){
-    showDialog(context: context, builder: (context){
-      return DialogBox(saveEvent: saveEvent, closeEvent: closeEvent, contr:cont ,);
-    });
-    db.updateData();
 
+  void addItem() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          saveEvent: saveEvent,
+          closeEvent: closeEvent,
+          contr: cont,
+        );
+      },
+    );
+    db.updateData();
   }
-  void removeItem(int index){
+
+  void removeItem(int index) {
     setState(() {
       db.toDoList.removeAt(index);
     });
     db.updateData();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
         title: const Text("To Do's"),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
       ),
       body: ListView.builder(
         itemCount: db.toDoList.length,
-        itemBuilder: (context, index){
-          return ToDoList(taskName: db.toDoList[index][0],
-          removeThis: (context)=>removeItem(index),
-           completed: db.toDoList[index][1], 
-           onChanged: (value)=>flip(value, index),);},
+        itemBuilder: (context, index) {
+          return ToDoList(
+            taskName: db.toDoList[index][0],
+            removeThis: (context) => removeItem(index),
+            completed: db.toDoList[index][1],
+            onChanged: (value) => flip(value, index),
+          );
+        },
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left: 0, right: 25, bottom: 50, top:0),
-        child: FloatingActionButton(elevation: 0.0,
-        shape: CircleBorder(
-    side: BorderSide(
-      color: Colors.black, // Color of the border
-      width: 2.0, // Width of the border
-    ), ),
-    onPressed: addItem, child: Icon(Icons.add, color: Colors.black,), backgroundColor: Colors.white,),
+        padding: const EdgeInsets.only(left: 0, right: 25, bottom: 50, top: 0),
+        child: FloatingActionButton(
+          elevation: 0.0,
+          shape: CircleBorder(
+            side: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+              width: 2.0,
+            ),
+          ),
+          onPressed: addItem,
+          child: Icon(
+            Icons.add,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+        ),
       ),
     );
   }
