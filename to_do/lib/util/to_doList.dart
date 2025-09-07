@@ -2,17 +2,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+// ignore: must_be_immutable
 class ToDoList extends StatefulWidget {
   final String taskName;
   final bool completed;
   final Function(bool)? onChanged;
   final Function(BuildContext)? removeThis;
-  const ToDoList({
+  bool isLeftyMode;
+  ToDoList({
     super.key,
     required this.taskName,
     required this.completed,
     required this.onChanged,
     required this.removeThis,
+    required this.isLeftyMode
   });
 
   @override
@@ -71,25 +74,47 @@ class _ToDoListState extends State<ToDoList> {
         child: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  widget.taskName,
-                  style: widget.completed
-                      ? CompletedTextStyle()
-                      : PendingTextStyle(),
-                ),
-              ),
-              IconButton(
-                onPressed: changeStatus,
-                icon: Icon(
-                  widget.completed
-                      ? Icons.check_box
-                      : Icons.check_box_outline_blank,
-                  color: Theme.of(context).iconTheme.color,
-                ),
-              ),
-            ],
+            children: widget.isLeftyMode 
+                ? [
+                    // Lefty Mode: Checkbox first, then text
+                    IconButton(
+                      onPressed: changeStatus,
+                      icon: Icon(
+                        widget.completed
+                            ? Icons.check_box
+                            : Icons.check_box_outline_blank,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        widget.taskName,
+                        style: widget.completed
+                            ? CompletedTextStyle()
+                            : PendingTextStyle(),
+                      ),
+                    ),
+                  ]
+                : [
+                    // Normal Mode: Text first, then checkbox
+                    Expanded(
+                      child: Text(
+                        widget.taskName,
+                        style: widget.completed
+                            ? CompletedTextStyle()
+                            : PendingTextStyle(),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: changeStatus,
+                      icon: Icon(
+                        widget.completed
+                            ? Icons.check_box
+                            : Icons.check_box_outline_blank,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    ),
+                  ],
           ),
         ),
       ),

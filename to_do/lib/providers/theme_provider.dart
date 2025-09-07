@@ -4,8 +4,10 @@ import 'package:hive/hive.dart';
 class ThemeProvider extends ChangeNotifier {
   late Box _box;
   bool _isDarkMode = false;
+  bool _isLeftyMode = false;
 
   bool get isDarkMode => _isDarkMode;
+  bool get isLeftyMode => _isLeftyMode;
 
   ThemeProvider() {
     _loadTheme();
@@ -14,12 +16,19 @@ class ThemeProvider extends ChangeNotifier {
   void _loadTheme() async {
     _box = await Hive.openBox('theme_box');
     _isDarkMode = _box.get('isDarkMode', defaultValue: false);
+    _isLeftyMode = _box.get('isLeftyMode', defaultValue: false);
     notifyListeners();
   }
 
   void toggleTheme() {
     _isDarkMode = !_isDarkMode;
     _box.put('isDarkMode', _isDarkMode);
+    notifyListeners();
+  }
+
+  void toggleLeftyMode() {
+    _isLeftyMode = !_isLeftyMode;
+    _box.put('isLeftyMode', _isLeftyMode);
     notifyListeners();
   }
 

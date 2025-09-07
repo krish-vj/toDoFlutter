@@ -72,8 +72,9 @@ class Developer extends StatelessWidget {
                       children: [
                         Expanded(
                           child: IconButton(
+                            
                             onPressed: () => _launchURL("https://github.com/krish-vj"),
-                            icon: Image.asset('assets/github.png', width: 40, height: 40),
+                            icon: Image.asset('assets/github.png', width: 40, height: 40, color: Colors.grey,),
                             tooltip: 'GitHub',
                           ),
                         ),
